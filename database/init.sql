@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS public.todos
     title      VARCHAR(255) NOT NULL,
     completed  BOOLEAN   DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT NULL
 );
 
 -- Seed the todos table with 10 sample todos
