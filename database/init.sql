@@ -28,3 +28,4 @@ CREATE ROLE psql WITH LOGIN PASSWORD 'password';
 
 -- Grant permissions to the role
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.todos TO psql;
+GRANT USAGE, SELECT, UPDATE ON SEQUENCE public.todos_id_seq TO psql;
