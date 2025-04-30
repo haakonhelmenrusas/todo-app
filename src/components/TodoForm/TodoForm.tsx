@@ -1,7 +1,11 @@
 'use client';
 import {FormEvent, useState} from "react";
 
-export function TodoForm() {
+interface TodoFormProps {
+	fetchTodos: () => void;
+}
+
+export function TodoForm({fetchTodos}: TodoFormProps) {
 	const [title, setTitle] = useState('');
 	const [completed, setCompleted] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -27,6 +31,7 @@ export function TodoForm() {
 
 			setTitle('');
 			setCompleted(false);
+			fetchTodos();
 		} catch (err) {
 			setError(err instanceof Error ? err.message : 'An error occurred');
 		} finally {
@@ -35,14 +40,14 @@ export function TodoForm() {
 	};
 
 	return (
-			<form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-md">
-				<h2 className="text-2xl font-bold">Create Todo</h2>
+			<form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-md p-4 bg-gray-50 rounded-lg shadow-md">
+				<h2 className="text-2xl font-bold text-black">Create Todo</h2>
 				{error && <p className="text-red-500">{error}</p>}
 				<input
 						type="text"
 						value={title}
 						onChange={(e) => setTitle(e.target.value)}
-						className="border rounded p-2"
+						className="border rounded text-black placeholder-blue-900 focus:placeholder-transparent p-2 border-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-500"
 						placeholder="Todo title"
 						required
 				/>
@@ -57,7 +62,7 @@ export function TodoForm() {
 					       id="circular-checkbox"/>
 
 					<label htmlFor="circular-checkbox"
-					       className="ms-2 text-sm font-medium text-gray-200 cursor-pointer">
+					       className="ms-2 text-sm font-medium text-gray-800 cursor-pointer">
 						Completed
 					</label>
 				</div>

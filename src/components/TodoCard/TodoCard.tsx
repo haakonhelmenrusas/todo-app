@@ -8,7 +8,7 @@ interface TodoCardProps {
 export function TodoCard({title, completed, createdAt, updatedAt}: TodoCardProps) {
 	return (
 			<div
-					className="bg-white shadow-sm rounded-lg p-4 border hover:shadow-md transition-shadow"
+					className="bg-white shadow-sm rounded-lg p-4 border hover:shadow-md transition-shadow duration-200 w-[120px] md:w-[200px] lg:w-[300px] flex flex-col justify-between"
 			>
 				<h3 className="font-medium text-black text-lg mb-2">{title}</h3>
 				<div className="flex items-center gap-2">
