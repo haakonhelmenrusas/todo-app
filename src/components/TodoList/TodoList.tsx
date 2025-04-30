@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Todo } from '@/types/Todo';
+import {useEffect, useState} from 'react';
+import {Todo} from '@/types/Todo';
+import {TodoCard} from "@/components";
 
 export function TodoList() {
 	const [todos, setTodos] = useState<Todo[]>([]);
@@ -26,6 +27,10 @@ export function TodoList() {
 
 		fetchTodos();
 	}, []);
+
+	function showCompletedTodos() {
+		setTodos((prevTodos) => prevTodos.filter((todo) => todo.completed));
+	}
 
 	if (loading) {
 		return (
@@ -55,26 +60,15 @@ export function TodoList() {
 
 	return (
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+				<button
+						className="bg-blue-500 text-white p-2 rounded mb-4 hover:cursor-pointer hover:bg-blue-600 transition-colors duration-200"
+						onClick={showCompletedTodos}
+				>
+					Show Completed Todos
+				</button>
 				{todos.map((todo) => (
-						<div
-								key={todo.id}
-								className="bg-white shadow-sm rounded-lg p-4 border hover:shadow-md transition-shadow"
-						>
-							<h3 className="font-medium text-lg mb-2">{todo.title}</h3>
-							<div className="flex items-center gap-2">
-            <span
-		            className={`inline-block w-2 h-2 rounded-full ${
-				            todo.completed ? 'bg-green-500' : 'bg-yellow-500'
-		            }`}
-            />
-								<span className="text-sm text-gray-500">
-              {todo.completed ? 'Completed' : 'Pending'}
-            </span>
-							</div>
-							<div className="text-xs text-gray-400 mt-4">
-								Created: {new Date(todo.createdAt).toLocaleDateString()}
-							</div>
-						</div>
+						<TodoCard key={todo.id} title={todo.title} completed={todo.completed}
+						          createdAt={todo.created_at} updatedAt={todo.updated_at}/>
 				))}
 			</div>
 	);
