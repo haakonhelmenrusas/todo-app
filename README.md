@@ -43,3 +43,7 @@ POSTGRES_DB=<database-name>
 ```
 
 - Replace `<username>`, `<password>`, and `<database-name>` with your PostgreSQL credentials.
+
+### Copyright
+
+This project is created to explore the capabilities of Next.js and PostgreSQL. It is not intended for production use. Copyright (c) 2023 [Rusås Design](https://rusåsdesign.no). All rights reserved.
