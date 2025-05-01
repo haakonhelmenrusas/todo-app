@@ -7,9 +7,10 @@ interface TodoListProps {
 	todos: Todo[];
 	loading: boolean;
 	error: string | null;
+	onDelete: (id: number) => void;
 }
 
-export function TodoList({ todos, loading, error }: TodoListProps) {
+export function TodoList({ todos, loading, error, onDelete }: TodoListProps) {
 	if (loading) {
 		return (
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full'>
@@ -45,6 +46,7 @@ export function TodoList({ todos, loading, error }: TodoListProps) {
 					completed={todo.completed}
 					createdAt={todo.created_at}
 					updatedAt={todo.updated_at}
+					onDelete={() => onDelete(todo.id)}
 				/>
 			))}
 		</div>
